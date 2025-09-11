@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Exercise, Workout, WorkoutWithSets, CreateExerciseRequest, CreateWorkoutRequest, PersonalRecord, ProgressData, WorkoutSplit, WorkoutPlan, PlannedWorkout, WorkoutSchedule, CreatePlannedWorkoutRequest } from '../types';
 
-const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || '/api';
+const API_BASE_URL = process.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
