@@ -166,6 +166,7 @@ CREATE TABLE IF NOT EXISTS planned_workouts (
 -- Workout schedule table
 CREATE TABLE IF NOT EXISTS workout_schedule (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER DEFAULT 1,
     split_name TEXT NOT NULL,
     day_of_week INTEGER NOT NULL, -- 0 = Sunday, 1 = Monday, etc.
     is_active BOOLEAN DEFAULT 1,
