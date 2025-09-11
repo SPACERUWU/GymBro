@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-gray-50 to-gray-100;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 transform hover:scale-105 active:scale-95;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 focus:ring-primary-500 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-gray-400 focus:ring-gray-500 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-success-500 to-success-600 text-white hover:from-success-600 hover:to-success-700 focus:ring-success-500 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-warning {
+    @apply bg-gradient-to-r from-warning-500 to-warning-600 text-white hover:from-warning-600 hover:to-warning-700 focus:ring-warning-500 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-danger {
+    @apply bg-gradient-to-r from-danger-500 to-danger-600 text-white hover:from-danger-600 hover:to-danger-700 focus:ring-danger-500 shadow-lg hover:shadow-xl;
+  }
+  
+  .btn-ghost {
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:ring-gray-500;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm hover:shadow-md;
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl shadow-soft border border-gray-100 hover:shadow-medium transition-all duration-300;
+  }
+  
+  .card-elevated {
+    @apply bg-white rounded-2xl shadow-medium border border-gray-100 hover:shadow-strong transition-all duration-300 transform hover:-translate-y-1;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-500 via-primary-600 to-secondary-600;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+  }
+  
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .category-chest {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .category-back {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .category-legs {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .category-shoulders {
+    @apply bg-purple-100 text-purple-800;
+  }
+  
+  .category-arms {
+    @apply bg-orange-100 text-orange-800;
+  }
+  
+  .category-core {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .category-cardio {
+    @apply bg-pink-100 text-pink-800;
+  }
+  
+  .category-other {
+    @apply bg-gray-100 text-gray-800;
+  }
+}
+
+/* Semantic UI Customizations */
+.searchable-dropdown {
+  @apply rounded-xl;
+}
+
+.searchable-dropdown .ui.dropdown {
+  @apply border border-gray-300 rounded-xl;
+}
+
+.searchable-dropdown .ui.dropdown:hover {
+  @apply border-primary-400;
+}
+
+.searchable-dropdown .ui.dropdown.active {
+  @apply border-primary-500 ring-2 ring-primary-200;
+}
+
+.searchable-dropdown .ui.dropdown .menu {
+  @apply border border-gray-200 rounded-xl shadow-lg;
+}
+
+.searchable-dropdown .ui.dropdown .menu .item {
+  @apply px-4 py-3;
+}
+
+.searchable-dropdown .ui.dropdown .menu .item:hover {
+  @apply bg-primary-50;
+}
+
+.searchable-dropdown .ui.dropdown .menu .item.active {
+  @apply bg-primary-100 text-primary-800;
+}
+
+.searchable-dropdown .ui.dropdown .text {
+  @apply text-gray-700;
+}
+
+.searchable-dropdown .ui.dropdown .text.default {
+  @apply text-gray-500;
+}
