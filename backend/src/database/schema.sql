@@ -151,3 +151,23 @@ WHERE e.name IN (
     'Seated Calf Raise Machine', 'Standing Calf Raise Machine',
     'Cable Squat', 'Cable Lunge'
 ) AND ws.name = 'Legs';
+
+-- Planned workouts table
+CREATE TABLE IF NOT EXISTS planned_workouts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    date DATE NOT NULL UNIQUE,
+    split_id INTEGER,
+    notes TEXT,
+    is_completed BOOLEAN DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (split_id) REFERENCES workout_splits (id)
+);
+
+-- Workout schedule table
+CREATE TABLE IF NOT EXISTS workout_schedule (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    split_name TEXT NOT NULL,
+    day_of_week INTEGER NOT NULL, -- 0 = Sunday, 1 = Monday, etc.
+    is_active BOOLEAN DEFAULT 1,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
