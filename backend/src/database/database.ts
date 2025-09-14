@@ -3,9 +3,23 @@ import { readFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 
 // Use persistent storage path for production, local path for development
-const DATABASE_PATH = process.env.NODE_ENV === 'production' 
-  ? '/app/data/gymbro.db' 
-  : process.env.DATABASE_PATH || './gymbro.db';
+// Fallback to local path if persistent storage is not available
+let DATABASE_PATH = process.env.DATABASE_PATH || './gymbro.db';
+
+if (process.env.NODE_ENV === 'production') {
+  try {
+    // Try to use persistent storage path
+    const persistentPath = '/app/data/gymbro.db';
+    const dbDir = dirname(persistentPath);
+    mkdirSync(dbDir, { recursive: true });
+    DATABASE_PATH = persistentPath;
+    console.log('Using persistent storage:', DATABASE_PATH);
+  } catch (err) {
+    // Fallback to local path if persistent storage fails
+    DATABASE_PATH = './gymbro.db';
+    console.log('Persistent storage not available, using local path:', DATABASE_PATH);
+  }
+}
 
 class Database {
   private db: sqlite3.Database;
@@ -15,12 +29,20 @@ class Database {
     const dbDir = dirname(DATABASE_PATH);
     try {
       mkdirSync(dbDir, { recursive: true });
+      console.log('Database directory created/verified:', dbDir);
     } catch (err) {
-      // Directory might already exist, ignore error
+      console.warn('Could not create database directory:', err);
+      // Continue anyway, directory might already exist
     }
     
-    this.db = new sqlite3.Database(DATABASE_PATH);
-    this.initializeDatabase();
+    try {
+      this.db = new sqlite3.Database(DATABASE_PATH);
+      console.log('Database connection established:', DATABASE_PATH);
+      this.initializeDatabase();
+    } catch (err) {
+      console.error('Failed to create database connection:', err);
+      throw err;
+    }
   }
 
   private initializeDatabase() {

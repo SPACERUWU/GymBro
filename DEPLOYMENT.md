@@ -124,6 +124,15 @@ The app uses SQLite which will be automatically created on first run. No additio
 - **For other platforms**: Ensure persistent storage is configured
 - The app now automatically uses persistent storage in production
 
+### Application Not Loading After Deploy
+**Problem**: App shows blank page or doesn't load at all
+**Solution**: 
+1. **Check Backend Health**: Visit `https://your-backend-url.com/api/health`
+2. **Check Deployment Logs**: Look for database connection errors
+3. **Verify Environment Variables**: Ensure `NODE_ENV=production` is set
+4. **Check Database Path**: App will fallback to local path if persistent storage fails
+5. **Check Frontend Build**: Ensure `VITE_API_URL` points to correct backend URL
+
 ## Support
 
 If you encounter issues:
