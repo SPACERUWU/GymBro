@@ -20,7 +20,11 @@
 3. Create new project from GitHub repo
 4. Add service from GitHub repo
 5. Root directory: `backend`
-6. Environment variables:
+6. **Add Volume for Database Persistence:**
+   - Go to your service settings
+   - Add a new volume named "database"
+   - Mount path: `/app/data`
+7. Environment variables:
    - `PORT`: `3001`
    - `NODE_ENV`: `production`
 
@@ -111,6 +115,14 @@ The app uses SQLite which will be automatically created on first run. No additio
 - Verify `VITE_API_URL` environment variable is set correctly
 - Check CORS settings in backend
 - Ensure backend is running and accessible
+
+### Database Data Loss After Deploy
+**Problem**: All data disappears after redeploying
+**Solution**: 
+- **For Railway**: Add a volume named "database" with mount path `/app/data`
+- **For Render**: Use external database service (PostgreSQL)
+- **For other platforms**: Ensure persistent storage is configured
+- The app now automatically uses persistent storage in production
 
 ## Support
 

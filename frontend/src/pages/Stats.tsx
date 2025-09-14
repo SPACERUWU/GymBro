@@ -98,14 +98,10 @@ const Stats = () => {
     };
 
     personalRecords.forEach(record => {
-      const category = record.exercise_name.includes('Chest') || record.exercise_name.includes('Bench') || record.exercise_name.includes('Press') ? 'Chest' :
-                      record.exercise_name.includes('Back') || record.exercise_name.includes('Row') || record.exercise_name.includes('Pull') ? 'Back' :
-                      record.exercise_name.includes('Shoulder') || record.exercise_name.includes('Lateral') ? 'Shoulders' :
-                      record.exercise_name.includes('Bicep') || record.exercise_name.includes('Tricep') || record.exercise_name.includes('Curl') ? 'Arms' :
-                      record.exercise_name.includes('Squat') || record.exercise_name.includes('Leg') || record.exercise_name.includes('Calf') ? 'Legs' :
-                      record.exercise_name.includes('Core') || record.exercise_name.includes('Ab') ? 'Core' : 'Other';
+      // Use the category from database instead of guessing from exercise name
+      const category = record.exercise_category;
 
-      if (category !== 'Other' && bodyParts[category as keyof typeof bodyParts] && record.max_weight > bodyParts[category as keyof typeof bodyParts].maxWeight) {
+      if (category && bodyParts[category as keyof typeof bodyParts] && record.max_weight > bodyParts[category as keyof typeof bodyParts].maxWeight) {
         bodyParts[category as keyof typeof bodyParts].maxWeight = record.max_weight;
         bodyParts[category as keyof typeof bodyParts].exercise = record.exercise_name;
       }

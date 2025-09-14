@@ -50,6 +50,7 @@ export interface CreateWorkoutRequest {
 export interface PersonalRecord {
   exercise_id: number;
   exercise_name: string;
+  exercise_category: string;
   max_weight: number;
   max_reps: number;
   max_volume: number;

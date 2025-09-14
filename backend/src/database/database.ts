@@ -1,13 +1,24 @@
 import sqlite3 from 'sqlite3';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync, mkdirSync } from 'fs';
+import { join, dirname } from 'path';
 
-const DATABASE_PATH = process.env.DATABASE_PATH || './gymbro.db';
+// Use persistent storage path for production, local path for development
+const DATABASE_PATH = process.env.NODE_ENV === 'production' 
+  ? '/app/data/gymbro.db' 
+  : process.env.DATABASE_PATH || './gymbro.db';
 
 class Database {
   private db: sqlite3.Database;
 
   constructor() {
+    // Ensure directory exists for database file
+    const dbDir = dirname(DATABASE_PATH);
+    try {
+      mkdirSync(dbDir, { recursive: true });
+    } catch (err) {
+      // Directory might already exist, ignore error
+    }
+    
     this.db = new sqlite3.Database(DATABASE_PATH);
     this.initializeDatabase();
   }

@@ -244,6 +244,7 @@ export class WorkoutService {
       SELECT 
         e.id as exercise_id,
         e.name as exercise_name,
+        e.category as exercise_category,
         MAX(ws.weight) as max_weight,
         MAX(ws.reps) as max_reps,
         MAX(ws.weight * ws.reps) as max_volume,
@@ -251,7 +252,7 @@ export class WorkoutService {
       FROM exercises e
       LEFT JOIN workout_sets ws ON e.id = ws.exercise_id
       LEFT JOIN workouts w ON ws.workout_id = w.id
-      GROUP BY e.id, e.name
+      GROUP BY e.id, e.name, e.category
       ORDER BY e.name
     `;
     return await database.query(sql);
