@@ -1,3 +1,4 @@
+
 import database from '../database/database';
 import { WorkoutSplit, Exercise, WorkoutPlan } from '../types';
 

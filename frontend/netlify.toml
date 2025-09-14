@@ -6,7 +6,16 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# SPA routing fix - redirect all routes to index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = true
+
+# Handle API routes (if any)
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-backend-url.railway.app/api/:splat"
+  status = 200
+  force = true

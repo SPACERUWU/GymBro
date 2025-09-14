@@ -94,6 +94,23 @@ The app uses SQLite which will be automatically created on first run. No additio
 2. Check that calendar updates properly
 3. Verify workout data persists
 4. Test AI chat functionality (requires Gemini API key)
+5. **Test SPA routing**: Try accessing URLs directly (e.g., `/workout`, `/stats`) and refresh the page
+
+## Common Issues & Solutions
+
+### 404 Error on Direct URL Access
+**Problem**: Getting 404 when accessing URLs directly or refreshing the page
+**Solution**: 
+- For Netlify: The `_redirects` file and `netlify.toml` are already configured
+- For Vercel: Add `vercel.json` with rewrites
+- For other platforms: Configure server to serve `index.html` for all routes
+
+### API Connection Issues
+**Problem**: Frontend can't connect to backend
+**Solution**: 
+- Verify `VITE_API_URL` environment variable is set correctly
+- Check CORS settings in backend
+- Ensure backend is running and accessible
 
 ## Support
 
@@ -102,3 +119,4 @@ If you encounter issues:
 2. Verify environment variables are set
 3. Ensure both frontend and backend are deployed
 4. Check CORS settings if API calls fail
+5. Test SPA routing by accessing URLs directly
